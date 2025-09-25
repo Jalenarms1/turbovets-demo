@@ -8,6 +8,7 @@ import { AuthService } from "./auth.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthUtilsService } from "@monorepo/auth";
 import { User } from "../users/users.entity";
+import { UserService } from "../users/users.service";
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { User } from "../users/users.entity";
     TypeOrmModule.forFeature([User])
   ],
   controllers: [AuthController],
-  providers: [JwtStrategy, AuthService, AuthUtilsService],
-  exports: [JwtStrategy, AuthService]
+  providers: [JwtStrategy, AuthService, AuthUtilsService, UserService],
+  exports: [JwtStrategy, AuthService, UserService]
 })
 export class AuthModule{}

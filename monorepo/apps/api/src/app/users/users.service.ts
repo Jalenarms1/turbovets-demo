@@ -20,4 +20,14 @@ export class UserService {
         var result = await this.userRepo.insert(newUser)
         return result
     }
+
+    async getUserByUsername(username: string): Promise<User | null> {
+        var user = await this.userRepo.findOne({
+            where: {username: username},
+            relations: ["role", "organization"]
+        })
+        console.log(!user);
+        
+        return !user ? null : user
+    }
 }

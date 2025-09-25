@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthStateService } from '../../services/AuthStateService';
 import { Router } from '@angular/router';
+import { Logo } from '../logo';
 
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [Divider, FormsModule, CommonModule],
+  imports: [Divider, Logo, FormsModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })

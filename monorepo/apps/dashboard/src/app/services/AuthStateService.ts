@@ -30,24 +30,33 @@ export class AuthStateService {
         if(data?.token && data?.user) {
             this.saveToken(data?.token)
 
+            
             this.setUser(data?.user)
-
+            
             return null
         }
-
+        
         return "An error ocurred"
-
-
+        
+        
     }
 
+    handleLogout(){
+        localStorage.removeItem("authToken")
+        this.currentUser = null
+        this.router.navigateByUrl("/login")
+
+    }
+    
     saveToken(token: string) {
         console.log("saving token");
         
         localStorage.setItem("authToken", token)
     }
-
+    
     setUser(user: UserDto) {
-        console.log("should navigate");
+        console.log("user");
+        console.log(user);
         
         this.currentUser = user
         this.router.navigateByUrl("/")

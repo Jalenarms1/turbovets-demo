@@ -32,7 +32,7 @@ export class AuthUtilsService {
         var jwtPayload = {
             sub: user.id,
             username: user.username,
-            roles: [user.role]
+            role: user.role
         }
 
         return this.jwtService.sign(jwtPayload)

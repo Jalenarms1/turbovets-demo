@@ -1,3 +1,4 @@
+import { OrganizationDto } from "../organizations/organizations.dto"
 import { UserDto } from "../users/users.dto"
 import { Category, Priority, Status } from "./tasks.enums"
 
@@ -8,8 +9,9 @@ export interface CreateTaskDto {
     status: Status,
     category: Category,
     priority: Priority,
-    assignedById: string,
-    assignedToId: string
+    assignedBy: UserDto,
+    assignedToUsername: string,
+    organization: OrganizationDto
 }
 
 export interface UpdateTaskDto {

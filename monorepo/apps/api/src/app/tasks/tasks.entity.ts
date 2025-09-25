@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable, ManyToMany, OneToOne } from 'typeorm';
 import { User } from '../users/users.entity';
 import {Category, Priority, Status} from "@monorepo/data"
+import { Organization } from '../organizations/organizations.entity';
 
 @Entity()
 export class Task {
@@ -45,4 +46,7 @@ export class Task {
 
   @ManyToOne(() => User, (user) => user.myTasks)
   assignedTo: User
+
+  @ManyToOne(() => Organization, (org) => org.tasks)
+  organization: Organization
 }

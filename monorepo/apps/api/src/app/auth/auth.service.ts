@@ -12,16 +12,6 @@ import * as bcrypt from "bcrypt"
 export class AuthService {
     constructor(@InjectRepository(User) private userRepo: Repository<User>, private authService: AuthUtilsService) {}
 
-    async getUserByUsername(username: string): Promise<User | null> {
-        var user = await this.userRepo.findOne({
-            where: {username: username},
-            relations: ["role", "organization"]
-        })
-        console.log(!user);
-        
-        return !user ? null : user
-    }
-
     async validateUser(loginDto: LoginDto,existingUser: UserAuthDto ) : Promise<UserAuthResponse | null> {
         var user = await this.authService.validateUser(loginDto, existingUser)
         if(!user) return null
