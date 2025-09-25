@@ -1,0 +1,35 @@
+<div class="w-full h-screen bg-gradient-to-br from-slate-900 to-slate-600 flex items-center relative">
+    <div class="w-[40vw] h-screen  border border-slate-500 bg-white flex flex-col gap-5 p-5 z-[99]">
+        <div class="flex items-center gap-2">
+            <div class="flex flex-col gap-1">
+                <div class="flex gap-1">
+                    <div class="bg-slate-800 w-2 h-2 rounded-full"></div>
+                    <div class="bg-slate-400 w-2 h-2 rounded-full"></div>
+                </div>
+                <div class="flex gap-1">
+                    <div class="bg-slate-400 w-2 h-2 rounded-full"></div>
+                    <div class="bg-slate-800 w-2 h-2 rounded-full"></div>
+                </div>
+            </div>
+            <p class="text-lg text-slate-500">TaskMate</p>
+
+        </div>
+        <p class="text-2xl font-semibold">Login</p>
+        <app-divider></app-divider>
+        <div class="flex flex-col gap-1">
+            <label htmlFor="username">Username</label>
+            <input [(ngModel)]="username" id="username"  class="bg-slate-200 p-2 rounded-sm"/>
+        </div>
+        <div class="flex flex-col gap-1">
+            <label htmlFor="password">Password</label>
+            <input [(ngModel)]="password" id="password" type="password"  class="bg-slate-200 p-2 rounded-sm"/>
+        </div>
+
+        <p *ngIf="loginErr" class="text-red-500 text-sm">{{loginErr}}</p>
+        
+        <button *ngIf="canSubmit()" (click)="submitLogin()" class="bg-slate-700 p-2 rounded-sm cursor-pointer text-white">Continue</button>
+        <button *ngIf="!canSubmit()" disabled="true" title="Please fill out all the required fields"  class="bg-slate-700 p-2 rounded-sm cursor-pointer text-slate-400 opacity-25 ">Continue</button>
+
+
+    </div>
+</div>
