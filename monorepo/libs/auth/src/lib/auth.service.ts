@@ -9,7 +9,7 @@ export class AuthUtilsService {
     constructor(private jwtService: JwtService) {}
 
     async validateUser(loginDto: LoginDto, existingUser: UserAuthDto) : Promise<UserDto | null> {
-        if(loginDto.username != existingUser.username) return null;
+        if(loginDto.username.trim() != existingUser.username.trim()) return null;
 
         var isValid = await bcrypt.compare(loginDto.password, existingUser.password)
 
@@ -21,7 +21,8 @@ export class AuthUtilsService {
         var user: UserDto = {
             id: existingUser.id as string,
             username: existingUser.username,
-            role: existingUser.role
+            role: existingUser.role,
+            organization: existingUser.organization
         } 
 
         return user
@@ -32,7 +33,8 @@ export class AuthUtilsService {
         var jwtPayload = {
             sub: user.id,
             username: user.username,
-            role: user.role
+            role: user.role,
+            organization: user.organization
         }
 
         return this.jwtService.sign(jwtPayload)

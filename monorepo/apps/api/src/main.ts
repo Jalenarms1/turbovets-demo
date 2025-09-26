@@ -19,9 +19,9 @@ async function seedDb(datasource: DataSource) {
   const orgRepo = datasource.getRepository(Organization)
   const rolesRepo = datasource.getRepository(Role)
 
-  // userRepo.deleteAll()
-  // orgRepo.deleteAll()
   // rolesRepo.deleteAll()
+  // orgRepo.deleteAll()
+  // userRepo.deleteAll()
 
   if((await rolesRepo.count()) == 0) {
     const role1 = {

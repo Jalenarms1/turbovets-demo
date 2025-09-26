@@ -19,13 +19,21 @@ export interface UpdateTaskDto {
     title: string,
     status: Status,
     category: Category,
-    priorit: Priority,
-    assignedToId: string
+    priority: Priority,
+    assignedTo: UserDto,
+    assignedBy: UserDto,
+    organization: OrganizationDto
 }
 
 export interface TasksDto {
     id: string,
     title: string,
+    dueDate: Date,
+    createdAt: Date,
+    category: Category,
+    status: Status,
+    priority: Priority,
     assignedTo: UserDto,
-    assignedBy: UserDto
+    assignedBy: UserDto,
+    organization: OrganizationDto
 } 

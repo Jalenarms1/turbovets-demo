@@ -14,7 +14,8 @@ export class UserService {
         var newUser: UserAuthDto = {
             username: userDto.username,
             password: await bcrypt.hash(userDto.password, 10),
-            role: userDto.role
+            role: userDto.role,
+            organization: userDto.organization
         } 
 
         var result = await this.userRepo.insert(newUser)
@@ -23,7 +24,7 @@ export class UserService {
 
     async getUserByUsername(username: string): Promise<User | null> {
         var user = await this.userRepo.findOne({
-            where: {username: username},
+            where: {username: username.trim()},
             relations: ["role", "organization"]
         })
         console.log(!user);

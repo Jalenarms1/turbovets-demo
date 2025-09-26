@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Divider } from '../divider';
 import { AuthStateService } from '../../services/AuthStateService';
-import { CreateTaskDto, OrganizationDto, UserDto } from '@monorepo/data';
+import { Category, CreateTaskDto, OrganizationDto, Priority, UserDto } from '@monorepo/data';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpService } from '../../services/HttpService';
+import { TaskService } from '../../services/TaskService';
 
 @Component({
   standalone: true,
@@ -14,7 +15,8 @@ import { HttpService } from '../../services/HttpService';
   styleUrl: './add-task.css',
 })
 export class AddTask implements OnInit {
-  constructor(private authState: AuthStateService, private httpService: HttpService) {}
+  @Input() onAdd!: (val: boolean) => void
+  constructor(private authState: AuthStateService, private httpService: HttpService, private taskService: TaskService) {}
 
   createTaskDto: CreateTaskDto = {} as CreateTaskDto
 
@@ -30,16 +32,31 @@ export class AddTask implements OnInit {
   {
     this.createTaskDto.createdAt = new Date()
 
-    var resp = await this.httpService.postData<CreateTaskDto>("/tasks", this.createTaskDto)
-
-    var {message} = await resp?.json()
-
-    if(message) {
-      this.submitErr = message
+    if(!this.createTaskDto.title || !this.createTaskDto.dueDate) {
+      this.submitErr = "Fill out all fields"
       return
     }
 
+    await this.taskService.createTask(this.createTaskDto)
+
     this.createTaskDto = {} as CreateTaskDto
+    if(this.onAdd) {
+      console.log("calling on add");
+      
+      this.onAdd(false)
+    }
+  }
+
+  getCategories()
+  {
+    
+    return this.taskService.getCategories()
+  }
+
+  getPriorities()
+  {
+    
+    return this.taskService.getPriorities()
   }
 
 }

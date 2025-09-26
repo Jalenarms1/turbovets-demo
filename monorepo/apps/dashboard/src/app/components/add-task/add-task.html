@@ -1,6 +1,9 @@
-<div class="w-full border border-slate-300 bg-slate-100 rounded-md h-80 p-5 flex flex-col gap-5">
-    <div class="flex flex-col">
-        <p>Add Task</p>
+<div class="w-full border border-slate-300 bg-slate-100 rounded-md h-full p-5 flex flex-col gap-5">
+    <div class="flex flex-col gap-2">
+        <div class="flex justify-between items-center">
+            <p>Add Task</p>
+            <button (click)="onAdd(false)" class=" text-red-500 border bg-white cursor-pointer border-slate-100 rounded-sm px-2 py-1">X</button>
+        </div>
         <app-divider></app-divider>
 
     </div>
@@ -14,13 +17,32 @@
             <label for="assignTo" class="text-sm text-slate-500">Title</label>
             <input id="assignTo" [(ngModel)]="createTaskDto.title" class="bg-white w-48" />
         </div>
-
+        
         <div class="flex flex-col gap-1">
             <label for="assignTo" class="text-sm text-slate-500">Due Date</label>
             <input id="assignTo" type="date" [(ngModel)]="createTaskDto.dueDate" class="bg-white w-48" />
         </div>
+        
+    </div>
+    
+    <div class="flex items-center gap-2">
+        <div class="flex flex-col gap-1">
+            <label for="category" class="text-sm text-slate-500">Category</label>
+            <select [(ngModel)]="createTaskDto.category" name="category" id="category" class="w-60">
+                <option *ngFor="let opt of getCategories()" [ngValue]="opt">{{opt}}</option>
+            </select>
+        </div>
 
     </div>
 
-    <button (click)="submitTask()" class="bg-slate-900 w-fit px-6 text-white rounded-sm py-1 cursor-pointer">Add</button>
+    <div class="flex flex-col gap-1">
+        <label for="priority" class="text-sm text-slate-500">Priority</label>
+        <select [(ngModel)]="createTaskDto.priority"  name="priority" id="priority" class="w-60">
+            <option *ngFor="let opt of getPriorities()" [ngValue]="opt">{{opt}}</option>
+        </select>
+    </div>
+
+    <p *ngIf="submitErr" class="text-red-500 text-sm">{{submitErr}}</p>
+
+    <button (click)="submitTask()" class="bg-slate-800 w-fit px-6 text-white rounded-sm py-1 cursor-pointer">Add</button>
 </div>

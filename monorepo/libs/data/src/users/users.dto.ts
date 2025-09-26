@@ -6,7 +6,8 @@ export interface UserAuthDto {
     id?: string
     username: string
     password: string
-    role: RoleDto
+    role: RoleDto,
+    organization: OrganizationDto
 }
 
 export interface UserAuthResponse {

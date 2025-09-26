@@ -1,0 +1,45 @@
+<div class="flex flex-col">
+    <table class="border border-slate-100 max-h-96 overflow-auto">
+        <tr class="bg-slate-800 p-2 rounded-sm border border-slate-200">
+            <td class="text-sm text-white p-2">Title</td>
+            <td class="text-sm text-white p-2">Due Date</td>
+            <td class="text-sm text-white p-2">Category</td>
+            <td class="text-sm text-white p-2">Priority</td>
+            <td class="text-sm text-white p-2">Assigned To</td>
+            <td class="text-sm text-white p-2">Assigned By</td>
+            <td *ngIf="canEdit()"></td>
+        </tr>
+        <tr *ngFor="let t of _taskService.tasks" class="even:bg-white odd:bg-slate-100 border-b border-slate-100">
+            <td class="text-sm p-2">{{t.title}}</td>
+            <td class="text-sm p-2">{{t.dueDate | date:'shortDate'}}</td>
+            @if(canEdit()) {
+                <td class="text-sm p-2">
+                    <select [(ngModel)]="t.category">
+                        <option *ngFor="let opt of getCategories()" [ngValue]="opt">{{opt}}</option>
+                    </select>
+                </td>
+                <td class="text-sm p-2">
+                    <select name="priority" [(ngModel)]="t.priority">
+                        <option *ngFor="let opt of getPriorities()" [ngValue]="opt">{{opt}}</option>
+                    </select>
+                </td>
+                
+            }
+            @else {
+
+                <td class="text-sm p-2">{{t.category}}</td>
+                <td class="text-sm p-2">{{t.priority}}</td>
+            }
+            <td class="text-sm p-2">{{t.assignedTo.username}}</td>
+            <td class="text-sm p-2">{{t.assignedBy.username}}</td>
+            <td *ngIf="canEdit()">
+                <div class="flex items-end gap-2">
+                    <button (click)="handleUpdate(t)" class="px-4 py-1 cursor-pointer bg-slate-100 shadow-sm shadow-slate-300  text-xs">Save</button>
+                    <button (click)="handleDelete(t.id)" class="px-4 py-1 cursor-pointer bg-slate-100 shadow-sm shadow-slate-300 text-red-500 text-xs">X</button>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+</div>
