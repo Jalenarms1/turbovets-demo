@@ -67,6 +67,7 @@ Though the realtionship for permissions is built out, time expired before being 
 ## Access Control Implementation
 
 <ul>
+    <li>Upon a successful login, the client is issued a jwt token along with the user object. The JWT token has the user's role for the RolesGuard to use when validating the request</li>
     <li>Users can only see tasks that have been created within their organization</li>
     <li>Users with the Viewer role can only see tasks assigned to them</li>
     <li>Front-end components for creating, updating and delting tasks are hidden to users that don't have the necessary role level (with more time there would be a better component structure for easily hiding components based on user role)</li>
