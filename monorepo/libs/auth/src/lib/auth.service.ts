@@ -9,7 +9,7 @@ export class AuthUtilsService {
     constructor(private jwtService: JwtService) {}
 
     async validateUser(loginDto: LoginDto, existingUser: UserAuthDto) : Promise<UserDto | null> {
-        if(loginDto.username.trim() != existingUser.username.trim()) return null;
+        if(loginDto.username.trim().toLowerCase() != existingUser.username.trim().toLowerCase()) return null;
 
         var isValid = await bcrypt.compare(loginDto.password, existingUser.password)
 

@@ -24,7 +24,7 @@ export class UserService {
 
     async getUserByUsername(username: string): Promise<User | null> {
         var user = await this.userRepo.findOne({
-            where: {username: username.trim()},
+            where: {username: username.trim().toLowerCase()},
             relations: ["role", "organization"]
         })
         console.log(!user);

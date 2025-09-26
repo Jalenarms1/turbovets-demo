@@ -112,3 +112,19 @@ Though the realtionship for permissions is built out, time expired before being 
 
 ## Future Considerations
 Rather than checking if the user can access the endpoint, you could have a data structure that caches by endpoint whether that user is able to access which would be an n(1) operation, simple key-value pair lookup. Then, if you had an endpoint where an admin would be able to update user roles, you would just clear that user's data from that cache so that it checks their permission on the next request they make, or update the cached value based on what their permission to those endpoints are going to be based on their new assigned role
+
+## Test Accounts
+
+Test Org 1
+<ul>
+    <li>username: owner1, password: ownerpass1</li>
+    <li>username: admin1, password: adminpass1</li>
+    <li>username: viewer1, password: viewerpass1</li>
+</ul>
+
+Test Org 2
+<ul>
+    <li>username: owner2, password: ownerpass2</li>
+    <li>username: admin2, password: adminpass2</li>
+    <li>username: viewer2, password: viewerpass2</li>
+</ul>
