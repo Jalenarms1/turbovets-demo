@@ -23,7 +23,7 @@ nx serve dashboard
 ## Architecture Overview
 
 The monorepo takes a modular design at the app level, so it allows for many different applications to be built within the same ecosystem. The apps folder contains an api folder, which has the nest js web server, and also a dashboard folder for the angular client application. They each import shared data structures from the libs folder.
-libs/auth will house any reuseable functionality or data structures pertaining to authentication. libs/data holds commonly used data transfer objects that the client and server can both reference to make sure they stay on the same page, when it comes to when the expected input/ouput is going to be.
+libs/auth will house any reuseable functionality or data structures pertaining to authentication. libs/data holds commonly used data transfer objects that the client and server can both reference to make sure they stay on the same page, when it comes to what the expected input/ouput is going to be.
 
 ## Data Model Explanation
 Organizations 
