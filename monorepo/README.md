@@ -28,28 +28,38 @@ libs/auth will house any reuseable functionality or data structures pertaining t
 ## Data Model Explanation
 Organizations 
 <ul>
-    <li>- User (owner)</li>
-    <li>- User(users[])</li>
-    <li>- Task(tasks[])</li>
+    <li>id</li>
+    <li>name</li>
+    <li>User (owner)</li>
+    <li>User(users[])</li>
+    <li>Task(tasks[])</li>
 </ul>
 Users 
 <ul>
-    <li>- Organization (organization)</li>
-    <li>-Task (assignedByMe[])</li>
-    <li>- Task (assignedToMe[])</li>
-    <li>-  Role (role)</li>
+    <li>id</li>
+    <li>username</li>
+    <li>password</li>
+    <li>Organization (organization)</li>
+    <li>Task (assignedByMe[])</li>
+    <li>Task (assignedToMe[])</li>
+    <li>Role (role)</li>
 </ul>
 Role 
 <ul>
-    <li>- User (users[])</li>
+    <li>id</li>
+    <li>name</li>
+    <li>level (could be used for coalescing a required role level)</li>
+    <li>User (users[])</li>
   
 </ul>
 
 Organizations 
 <ul>
-    <li>- User (assignedBy)</li>
-    <li>- User (assignedTo)</li>
-    <li>- TOrganization (organization)</li>
+    <li>id</li>
+    <li>name</li>
+    <li>User (assignedBy)</li>
+    <li>User (assignedTo)</li>
+    <li>TOrganization (organization)</li>
 </ul>
 
 Though the realtionship for permissions is built out, time expired before being able to implement it into whats being cpatured and used for security checks
