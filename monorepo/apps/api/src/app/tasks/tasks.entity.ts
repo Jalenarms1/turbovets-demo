@@ -41,10 +41,10 @@ export class Task {
   })
   category: Category;
 
-  @ManyToOne(() => User, (user) => user.createdTasks)
+  @ManyToOne(() => User, (user) => user.assignedByMe)
   assignedBy: User
 
-  @ManyToOne(() => User, (user) => user.myTasks)
+  @ManyToOne(() => User, (user) => user.assignedToMe)
   assignedTo: User
 
   @ManyToOne(() => Organization, (org) => org.tasks)

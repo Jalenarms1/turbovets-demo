@@ -28,12 +28,12 @@ export class User {
   @OneToMany(() => Task, (task) => task.assignedBy, {
     onDelete: "CASCADE"
   })
-  createdTasks: Task[]
+  assignedByMe: Task[]
 
   @OneToMany(() => Task, (task) => task.assignedTo, {
     onDelete: "CASCADE"
   })
-  myTasks: Task[]
+  assignedToMe: Task[]
 
   @ManyToMany(() => Permission, (perm) => perm.users, { cascade: true })
   @JoinTable()
