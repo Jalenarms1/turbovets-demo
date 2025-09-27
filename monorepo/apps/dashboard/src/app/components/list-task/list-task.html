@@ -11,7 +11,7 @@
         </tr>
         <tr *ngFor="let t of _taskService.tasks" class="even:bg-white odd:bg-slate-100 border-b border-slate-100">
             <td class="text-sm p-2">{{t.title}}</td>
-            <td class="text-sm p-2">{{t.dueDate | date:'shortDate'}}</td>
+            <td class="text-sm p-2">{{t.dueDate | date:'shortDate':'UTC'}}</td>
             @if(canEdit()) {
                 <td class="text-sm p-2">
                     <select [(ngModel)]="t.category">

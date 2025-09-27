@@ -2,6 +2,7 @@
 
 ## Setup
 
+Add a db.sqlite file in the monorepo folder
 ```
 cd monorepo
 
@@ -12,6 +13,7 @@ Add a .env and add the following contents:
 ```
 JWT_SECRET="YOUR_JWT_SECRET"
 ```
+
 
 Run the following commands in one, or multiple terminals
 ```
